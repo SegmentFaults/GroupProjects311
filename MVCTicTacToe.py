@@ -2,76 +2,62 @@ from Tkinter import *
 from enum import Enum
 from array import array
 
-
-class ButtonState(Enum):
-        NONE = 1
-        X = 2
-        O = 3
-
-
-class GameState(Enum):
-    NONE =1
-    WINX = 2
-    WINY = 3
-    CAT = 4
-
 #this is the controller
 class Logic(object):
     player=True
     def __init__(self):
         # it's going to be a lot easier just to not use a double sided
-        self.gameBoard = array('I', [1, 1, 1, 1, 1, 1, 1, 1, 1])
-        self.gameState = 4
-    def getGameBoard(self):
-        return self.gameBoard
+        self.game_board = array('I', [1, 1, 1, 1, 1, 1, 1, 1, 1])
+        self.game_state = 4
+    def get_game_board(self):
+        return self.game_board
 
-    def changeState(self, board_space):
+    def change_state(self, board_space):
         if self.player:
-            self.gameBoard[board_space]=2
+            self.game_board[board_space]=2
         else:
-            self.gameBoard[board_space]=3
+            self.game_board[board_space]=3
         self.player=not self.player
-        winStatus = self.checkWin()
+        winStatus = self.check_win()
         if not winStatus == 4:
-            self.gameState=winStatus
-    def checkWin(self):
+            self.game_state=winStatus
+    def check_win(self):
         ##will return 1 for x win, 2 for y win and 3 for cat. Otherwise, it will return 4 for continue
         #checking for x win
-        if self.__checkWin(2):
+        if self.__check_win(2):
             return 1
         #checking for y win
-        elif self.__checkWin(3):
+        elif self.__check_win(3):
             return 2
         #checking for cat
-        elif self.__checkCat():
+        elif self.__check_cat():
             return 3
         #else send back 4 for nothing
         return 4
-        
-    def __checkWin(self, playerToCheck):
+
+    def __check_win(self, playerToCheck):
         #check vertical
         #check horizontal
         #check diagonal
-        
+
         for x in range(3):
-            if self.gameBoard[x]==playerToCheck and self.gameBoard[x+3]==playerToCheck and self.gameBoard[x+6]==playerToCheck:
+            if self.game_board[x]==playerToCheck and self.game_board[x+3]==playerToCheck and self.game_board[x+6]==playerToCheck:
                 return True
-            elif self.gameBoard[x*3]==playerToCheck and self.gameBoard[x*3+1]==playerToCheck and self.gameBoard[x*3+2]==playerToCheck:
+            elif self.game_board[x*3]==playerToCheck and self.game_board[x*3+1]==playerToCheck and self.game_board[x*3+2]==playerToCheck:
                 return True
         if (x[0]==playerToCheck and x[4]==playerToCheck  and x[8]==playerToCheck ) or (x[2]==playerToCheck  and x[4]==playerToCheck  and x[6]==playerToCheck):
             return True
         return False
-    
-    def __checkCat(self):
-        for x in range(9):
-            if not self.gameBoard[x]==2 or not self.gameBoard[x]==3:
-                return False
-            
-        return True
-    
-#this is the view
-class Application(Frame, Logic):
 
+    def __check_cat(self):
+        for x in range(9):
+            if not self.game_board[x]==2 or not self.game_board[x]==3:
+                return False
+
+        return True
+
+#this is the view
+class GUIView(Frame, Logic):
     def __init__(self, master):
         Frame.__init__(self, master)
         self.grid()
@@ -79,39 +65,48 @@ class Application(Frame, Logic):
         self.create_widgets()
 
     def on_click(self, board_space):
-        self.logic.changeState(board_space)
+        self.logic.change_state(board_space)
         self.create_widgets()
 
+    def switch_ui(self, currentLogic):
+
+
     def create_widgets(self):
-        verticalLine=0
+        vertical_line=0
         for rowSpace in range(9):
-                buttonText = self.logic.getGameBoard()[rowSpace]
+                button_text = self.logic.get_game_board()[rowSpace]
                 #get the text from the board and make sure that you convert it for the GUI
-                buttonText = self.determine_button_text(buttonText)
-                button = Button(self, text=buttonText, height=10, width=10, command=lambda x=rowSpace: self.on_click(x))
-                button.grid(row = rowSpace/3, column = verticalLine)
-                verticalLine+=1
-                if verticalLine==3:
-                    verticalLine=0
-        gameStateLabel = Label(self, text = self.determine_button_text(self.logic.gameState))
-        gameStateLabel.grid(row = 4, column = 1)
-    def determine_button_text(self, gameBoardInteger):
-        if gameBoardInteger == 2:
+                button_text = self.determine_button_text(button_text)
+                button = Button(self, text=button_text, height=10, width=10, command=lambda x=rowSpace: self.on_click(x))
+                button.grid(row = rowSpace/3, column = vertical_line)
+                vertical_line+=1
+                if vertical_line==3:
+                    vertical_line=0
+        game_state_label = Label(self, text = self.determine_button_text(self.logic.game_state))
+        game_state_label.grid(row = 4, column = 1)
+        switch_interface_button = (self, text = "Switch UI", command=lambda log=self.logic: self.switch_ui(logic))
+        switch_interface_button.grid(row = 4, column = 2)
+
+    def determine_button_text(self, game_board_integer):
+        if game_board_integer == 2:
             return 'X'
-        elif gameBoardInteger == 3:
+        elif game_board_integer == 3:
             return 'Y'
         else:
             return '-'
-    
-    def determine_label_text(self, gameState):
-        if self.logic.gameState==1:
+
+    def determine_label_text(self, game_state):
+        if self.logic.game_state==1:
             return "X Wins"
-        elif self.logic.gameState==2:
+        elif self.logic.game_state==2:
             return "Y Wins"
-        elif self.logic.gameState==3:
+        elif self.logic.game_state==3:
             return "Cat"
         else:
             return "No Winner"
+
+class TextView(Logic):
+
 mainWindow = Tk()
-obj = Application(mainWindow)
+obj = GUIView(mainWindow)
 mainWindow.mainloop()
