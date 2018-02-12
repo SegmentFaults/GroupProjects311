@@ -9,9 +9,10 @@ class Logic(object):
         # it's going to be a lot easier just to not use a double sided
         self.game_board = array('I', [1, 1, 1, 1, 1, 1, 1, 1, 1])
         self.game_state = 4
+    #model
     def get_game_board(self):
         return self.game_board
-
+    #controller
     def change_state(self, board_space):
         if self.player:
             self.game_board[board_space]=2
@@ -21,7 +22,8 @@ class Logic(object):
         winStatus = self.check_win()
         if not winStatus == 4:
             self.game_state=winStatus
-    def check_win(self):
+    #model
+    def check_end_game(self):
         ##will return 1 for x win, 2 for y win and 3 for cat. Otherwise, it will return 4 for continue
         #checking for x win
         if self.__check_win(2):
@@ -34,7 +36,7 @@ class Logic(object):
             return 3
         #else send back 4 for nothing
         return 4
-
+    #model
     def __check_win(self, playerToCheck):
         #check vertical
         #check horizontal
@@ -48,7 +50,7 @@ class Logic(object):
         if (x[0]==playerToCheck and x[4]==playerToCheck  and x[8]==playerToCheck ) or (x[2]==playerToCheck  and x[4]==playerToCheck  and x[6]==playerToCheck):
             return True
         return False
-
+    #model
     def __check_cat(self):
         for x in range(9):
             if not self.game_board[x]==2 or not self.game_board[x]==3:
@@ -63,11 +65,11 @@ class GUIView(Frame, Logic):
         self.grid()
         self.logic = Logic()
         self.create_widgets()
-
+    #move to controller
     def on_click(self, board_space):
         self.logic.change_state(board_space)
         self.create_widgets()
-
+    #move to controller
     def switch_ui(self, currentLogic):
 
 
@@ -87,6 +89,7 @@ class GUIView(Frame, Logic):
         switch_interface_button = (self, text = "Switch UI", command=lambda log=self.logic: self.switch_ui(logic))
         switch_interface_button.grid(row = 4, column = 2)
 
+    #move to controller
     def determine_button_text(self, game_board_integer):
         if game_board_integer == 2:
             return 'X'
@@ -94,7 +97,7 @@ class GUIView(Frame, Logic):
             return 'Y'
         else:
             return '-'
-
+    #move to controller
     def determine_label_text(self, game_state):
         if self.logic.game_state==1:
             return "X Wins"
