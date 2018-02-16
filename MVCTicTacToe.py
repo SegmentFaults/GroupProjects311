@@ -38,7 +38,7 @@ class Model():
         #else send back 4 for nothing
         return 4
     #model
-    def __check_win(self, playerToCheck):
+    def check_win(self, playerToCheck):
         #check vertical
         #check horizontal
         #check diagonal
@@ -57,27 +57,30 @@ class Model():
             print "works 3"
             return True
         return False
+    def get_game_state(self):
+        return self.game_state
 #controller mediates between the model and the view
 class Controller(object):
     #translates user action into changes in the model
-    def __init__(self, model):
+    def __init__(self, model,view):
+        self.view=view
         self.model = model
         # it's going to be a lot easier just to not use a double sided
         print "Filler"
     def change_state(self, board_space):
-        if self.player and self.game_board[board_space]==1:
-            self.game_board[board_space]=2
-            self.player=not self.player
-        elif self.game_board[board_space]==1:
-            self.game_board[board_space]=3
-            self.player=not self.player
-        winStatus = self.__check_win(self.player)
+        if self.model.player and self.model.game_board[board_space]==1:
+            self.model.game_board[board_space]=2
+            self.model.player=not self.model.player
+        elif self.model.game_board[board_space]==1:
+            self.model.game_board[board_space]=3
+            self.model.player=not self.model.player
+        winStatus = self.model.check_win(self.model.player)
         if not winStatus == 4:
             self.game_state=winStatus
     
     def on_click(self, board_space):
-        self.controller.change_state(board_space)
-        self.create_widgets()
+        self.change_state(board_space)
+        self.view.create_widgets()
         
     def switch_ui(self, currentLogic):
         #TODO create method that swaps them
@@ -92,11 +95,11 @@ class Controller(object):
             return '-'
     #move to controller
     def determine_label_text(self, game_state):
-        if self.controller.game_state==1:
+        if self.model.game_state==1:
             return "X Wins"
-        elif self.controller.game_state==2:
+        elif self.model.game_state==2:
             return "Y Wins"
-        elif self.controller.game_state==3:
+        elif self.model.game_state==3:
             return "Cat"
         else:
             return ""
@@ -104,11 +107,11 @@ class Controller(object):
 #this is the view
 class GUIView(Frame):
     #View
-    def __init__(self, master, controller):
+    def __init__(self, master, Controlle):
         Frame.__init__(self, master)
         self.grid()
         self.model = Model()
-        self.controller = controller(self.model)
+        self.controller = Controller(self.model, self)
         self.create_widgets()
     def create_widgets(self):
         vertical_line=0
@@ -116,16 +119,16 @@ class GUIView(Frame):
                 button_text = self.model.get_game_board()[rowSpace]
                 #get the text from the board and make sure that you convert it for the GUI
                 button_text = self.controller.determine_button_text(button_text)
-                button = Button(self, text=button_text, height=10, width=10, command=lambda x=rowSpace: controller.on_click(x))
+                button = Button(self, text=button_text, height=10, width=10, command=lambda x=rowSpace: self.controller.on_click(x))
                 button.grid(row = rowSpace/3, column = vertical_line)
                 vertical_line+=1
                 if vertical_line==3:
                     vertical_line=0
         
         game_state_label = Label(self)
-        game_state_label.config(text = self.model.determine_label_text(self.model.game_state))
+        game_state_label.config(text = self.controller.determine_label_text(self.model.get_game_state()))
         game_state_label.grid(row = 4, column = 1)
-        switch_interface_button = Button(self, text="Switch UI", width =10, height =10, command=lambda model_instance=self.model: self.switch_ui(model_instance))
+        switch_interface_button = Button(self, text="Switch UI", width =10, height =10, command=lambda model_instance=self.model: self.controller.switch_ui(model_instance))
         switch_interface_button.grid(row = 4, column = 2)
 
    
