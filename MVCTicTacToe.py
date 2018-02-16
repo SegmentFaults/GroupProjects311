@@ -1,7 +1,7 @@
 from Tkinter import *
 from enum import Enum
 from array import array
-
+#TODO: Break controller and model into two from the "Logic class"
 #this is the controller
 class Logic(object):
     player=True
@@ -71,7 +71,7 @@ class GUIView(Frame, Logic):
         self.create_widgets()
     #move to controller
     def switch_ui(self, currentLogic):
-
+    #TODO create method that swaps them
 
     def create_widgets(self):
         vertical_line=0
@@ -86,8 +86,9 @@ class GUIView(Frame, Logic):
                     vertical_line=0
         game_state_label = Label(self, text = self.determine_button_text(self.logic.game_state))
         game_state_label.grid(row = 4, column = 1)
-        switch_interface_button = (self, text = "Switch UI", command=lambda log=self.logic: self.switch_ui(logic))
-        switch_interface_button.grid(row = 4, column = 2)
+        #TODO: Create a button to swap interfaces
+        #switch_interface_button = (self, text = "Switch UI", command=lambda log=self.logic: self.switch_ui(logic))
+        #switch_interface_button.grid(row = 4, column = 2)
 
     #move to controller
     def determine_button_text(self, game_board_integer):
@@ -107,9 +108,13 @@ class GUIView(Frame, Logic):
             return "Cat"
         else:
             return "No Winner"
-
+#TODO: Implement the text based logic.
 class TextView(Logic):
-
+    #TODO
 mainWindow = Tk()
 obj = GUIView(mainWindow)
 mainWindow.mainloop()
+
+
+
+#TODO: Implement testing methods in a seperate class.
