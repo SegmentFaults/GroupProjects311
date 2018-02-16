@@ -17,7 +17,6 @@ class Model():
                 return False
 
         return True
-    #model
     def __change_win(self, player):
         if player:
             self.game_state=1
@@ -65,8 +64,7 @@ class Controller(object):
     def __init__(self, model,view):
         self.view=view
         self.model = model
-        # it's going to be a lot easier just to not use a double sided
-        print "Filler"
+
     def change_state(self, board_space):
         if self.model.player and self.model.game_board[board_space]==1:
             self.model.game_board[board_space]=2
@@ -94,16 +92,18 @@ class Controller(object):
         else:
             return '-'
     #move to controller
-    def determine_label_text(self, game_state):
+    def determine_label_text(self):
+        game_state = self.model.get_game_state()
+        message=""
         if self.model.game_state==1:
-            return "X Wins"
+            message ="X Wins"
         elif self.model.game_state==2:
-            return "Y Wins"
+            message= "Y Wins"
         elif self.model.game_state==3:
-            return "Cat"
+            message= "Cat"
         else:
-            return ""
-
+            message = ""
+        return message
 #this is the view
 class GUIView(Frame):
     #View
@@ -126,7 +126,7 @@ class GUIView(Frame):
                     vertical_line=0
         
         game_state_label = Label(self)
-        game_state_label.config(text = self.controller.determine_label_text(self.model.get_game_state()))
+        game_state_label.config(text = self.controller.determine_label_text())
         game_state_label.grid(row = 4, column = 1)
         switch_interface_button = Button(self, text="Switch UI", width =10, height =10, command=lambda model_instance=self.model: self.controller.switch_ui(model_instance))
         switch_interface_button.grid(row = 4, column = 2)
@@ -134,7 +134,7 @@ class GUIView(Frame):
    
 #TODO: Implement the text based controller.
 class TextView(Controller):
-    print "We need to seperate the model and the controller first"
+    print "Text View Button"
 
 
 mainWindow = Tk()
