@@ -82,10 +82,6 @@ class Controller(object):
         
         return validMove
     
-    def on_click(self, board_space):
-        self.change_state(board_space)
-        self.view.create_widgets()
-        
     def determine_game_piece(self, game_board_integer):
         if game_board_integer == 2:
             return 'X'
@@ -110,27 +106,33 @@ class Controller(object):
 #this is the view
 class GUIView(Frame):
     #View
-    def __init__(self, master, controller):
+    def __init__(self, master, model, controller):
         Frame.__init__(self, master)
         self.grid()
+        self.model = model
         self.controller = controller
         self.create_widgets()
 
     def create_widgets(self):
         vertical_line=0
-        for rowSpace in range(9):
-                button_text = self.model.get_game_board()[rowSpace]
-                #get the text from the board and make sure that you convert it for the GUI
-                button_text = self.controller.determine_game_piece(button_text)
-                button = Button(self, text=button_text, height=10, width=10, command=lambda x=rowSpace: self.controller.on_click(x))
-                button.grid(row = rowSpace/3, column = vertical_line)
-                vertical_line+=1
-                if vertical_line==3:
-                    vertical_line=0
-        
         game_state_label = Label(self)
         game_state_label.config(text = self.controller.determine_winner_text())
+        for rowSpace in range(9):
+                    button_text = self.model.get_game_board()[rowSpace]
+                    #get the text from the board and make sure that you convert it for the GUI
+                    button_text = self.controller.determine_game_piece(button_text)
+                    button = Button(self, text=button_text, height=10, width=10, command=lambda x=rowSpace: self.on_click(x))
+                    button.grid(row = rowSpace/3, column = vertical_line)
+                    vertical_line+=1
+                    if vertical_line==3:
+                        vertical_line=0
+        
         game_state_label.grid(row = 4, column = 1)
+        
+    def on_click(self, board_space):
+        if self.controller.determine_winner_text()=="":
+            self.controller.change_state(board_space)
+            self.create_widgets()
         
 
 #TODO: Implement the text based controller.
@@ -213,7 +215,7 @@ view = None
 
 if choice == "1":
     mainWindow = Tk()
-    view = GUIView(mainWindow, c)
+    view = GUIView(mainWindow,m, c)
     mainWindow.mainloop()
 elif choice == "2":
     view = TextView(m, c)
