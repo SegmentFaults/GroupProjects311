@@ -57,13 +57,10 @@ class Model():
 
         for x in range(3):
             if self.game_board[x]==playerToCheck and self.game_board[x+3]==playerToCheck and self.game_board[x+6]==playerToCheck:
-                print "works 1"
                 return True
             elif self.game_board[x*3]==playerToCheck and self.game_board[x*3+1]==playerToCheck and self.game_board[x*3+2]==playerToCheck:
-                print "works 2"
                 return True
         if (self.game_board[0]==playerToCheck and self.game_board[4]==playerToCheck and self.game_board[8]==playerToCheck ) or (self.game_board[2]==playerToCheck and self.game_board[4]==playerToCheck and self.game_board[6]==playerToCheck):
-            print "works 3"
             return True
 
         return False
@@ -80,14 +77,15 @@ class Controller(object):
     def change_state(self, board_space):
         validMove = False
         #if X
-        if self.model.playerIsX and self.model.game_board[board_space]==1:
-            self.model.game_board[board_space]=2
-            self.model.playerIsX=not self.model.playerIsX
-            validMove = True
-        elif self.model.game_board[board_space]==1:
-            self.model.game_board[board_space]=3
-            self.model.playerIsX=not self.model.playerIsX
-            validMove = True
+        if -1 < board_space < 9:
+            if self.model.playerIsX and self.model.game_board[board_space]==1:
+                self.model.game_board[board_space]=2
+                self.model.playerIsX=not self.model.playerIsX
+                validMove = True
+            elif self.model.game_board[board_space]==1:
+                self.model.game_board[board_space]=3
+                self.model.playerIsX=not self.model.playerIsX
+                validMove = True
 
         self.model.game_state = self.model.check_end_game()
         
@@ -104,11 +102,11 @@ class Controller(object):
     def determine_winner_text(self):
         game_state = self.model.get_game_state()
         message=""
-        if self.model.game_state==1:
+        if self.model.game_state == 1:
             message ="X Wins"
-        elif self.model.game_state==2:
+        elif self.model.game_state == 2:
             message= "Y Wins"
-        elif self.model.game_state==3:
+        elif self.model.game_state == 3:
             message= "Cat"
         else:
             message = ""
@@ -166,7 +164,7 @@ class TextView:
         print "\n==============================================\n"
         print "X's Turn" if self.model.playerIsX else "Y's Turn"
         print "\n==============================================\n"
-        print "0 1 2\n3 4 5\n6 7 8"
+        print "1 2 3\n4 5 6\n7 8 9"
 
         print "\n======\n"
 
@@ -180,12 +178,12 @@ class TextView:
             moveInput = raw_input("Where do you want to play?")
 
             try:
-                move = int(moveInput)
+                move = int(moveInput) - 1
                 
                 if self.controller.change_state(move):
                     needInput = False
                     print "INPUT TAKEN"
-                    #move successfl
+                    #move successful
                 else:
                     print "INPUT NOT TAKEN. TRY AGAIN"
                     needInput = True
