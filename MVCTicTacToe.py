@@ -1,29 +1,40 @@
+# Michael Gentile, Connor Schmidt, Nick Hutchison, Travis Hawks
+# Dr. Kiper
+# CSE 311 Section A
+# This is an MVC Tic Tac Toe Program
+# The GUI, Model and Controller was developed by Michael Gentile
+# The text based view was developed by Connor Schmidt
+# The tests were created by Travis Hawks.
+
+
+
 from Tkinter import *
 from array import array
 
+#This defines the data that is found in the board.
+#This will also contain the logic of determining game state. 
 class Model():
     playerIsX=True
     def __init__(self):
         self.game_board = array('I', [1, 1, 1, 1, 1, 1, 1, 1, 1])
         self.game_state = 4
-        
+    #get_game_board
+    #getter for the game board.
+    #no parameters
+    #full board in the state of an array
     def get_game_board(self):
         return self.game_board
-    
+    #__check_cat
+    #determining cat game state
+    #no parameters
+    #returns true if the game is full w/ no winner
+    #otherwise, return false.
     def __check_cat(self):
         for x in range(9):
             if self.game_board[x]==1:
                 return False
 
         return True
-
-    #TODO: Remove
-    #def __change_win(self, player):
-    #    if player:
-    #        self.game_state=1
-    #        #verify these constants later
-    #    else:
-    #        self.game_state=2
 
     def check_end_game(self):
         ##will return 1 for x win, 2 for y win and 3 for cat. Otherwise, it will return 4 for continue
