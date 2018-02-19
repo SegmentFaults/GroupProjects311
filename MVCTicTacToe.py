@@ -1,7 +1,7 @@
 # Michael Gentile, Connor Schmidt, Nick Hutchison, Travis Hawks
 # Dr. Kiper
 # CSE 311 Section A
-# This is an MVC Tic Tac Toe Program
+# This is an MVC Tic Tac Toe Program written in Python 2.7.x
 # The GUI, Model and Controller was developed by Michael Gentile
 # The text based view was developed by Connor Schmidt
 # The tests were created by Travis Hawks.
@@ -35,7 +35,11 @@ class Model():
                 return False
 
         return True
-
+	#check_end_game
+    #is a method that checks if the program has a state of win for either player and then checks for a cat
+    #no parameters
+	#Returns 1 for an X win and 2 for a O win. 3 For cat. 
+    #otherwise, it will return a 4 indicating that the game should continue
     def check_end_game(self):
         ##will return 1 for x win, 2 for y win and 3 for cat. Otherwise, it will return 4 for continue
         #checking for x win
@@ -49,7 +53,11 @@ class Model():
             return 3
         #else send back 4 for nothing
         return 4
-    #model
+		
+	#check_win
+    #Checks if the game has been won by a specific player. 
+    #Parameter: which player to check. 
+	#Returns true if the game was won. Returns false otherwise. 
     def check_win(self, playerToCheck):
         #check vertical
         #check horizontal
@@ -64,16 +72,23 @@ class Model():
             return True
 
         return False
-
+	#get_game_state
+	#returns the game state of the board. 
+	
     def get_game_state(self):
         return self.game_state
 
 #controller mediates between the model and the view
+#translates user action into changes in the model
 class Controller(object):
-    #translates user action into changes in the model
+    #constructor.
+	#initalizes the model so that can be controlled.
     def __init__(self, model):
         self.model = model
-
+	#change_state
+	#Actual action of the board. Changes the buttons or text. 
+	#Parameter: board_space: which board_space (index 0) to be changed. 
+	#Returns if there is a valid move.
     def change_state(self, board_space):
         validMove = False
         #if X
@@ -90,7 +105,10 @@ class Controller(object):
         self.model.game_state = self.model.check_end_game()
         
         return validMove
-    
+    #determine_game_piece
+	#determines which text is accurate for the current model's game state. 
+	#Parameter: game_board_integer: what game piece is given
+	#Returns the game board spot's character
     def determine_game_piece(self, game_board_integer):
         if game_board_integer == 2:
             return 'X'
@@ -98,7 +116,10 @@ class Controller(object):
             return 'Y'
         else:
             return '-'
-    #move to controller
+    #determine_winner_text
+	#Manages the labels and which winner there is to the game
+	#No params
+	#Returns a string of which character wins.
     def determine_winner_text(self):
         game_state = self.model.get_game_state()
         message=""
@@ -112,16 +133,23 @@ class Controller(object):
             message = ""
         return message
 
-#this is the view
 class GUIView(Frame):
-    #View
+
+    #Constructor
+	#Gives itself a from of the model, controller and creates the layout.
+	#takes in a frame, a model and a controller
+	#Returns nothing	
     def __init__(self, master, model, controller):
         Frame.__init__(self, master)
         self.grid()
         self.model = model
         self.controller = controller
         self.create_widgets()
-
+		
+	#create_widgets
+	#creates and populates the GUI.
+	#no parameters
+	#Returns nothing
     def create_widgets(self):
         vertical_line=0
         game_state_label = Label(self)
@@ -137,14 +165,16 @@ class GUIView(Frame):
                         vertical_line=0
         
         game_state_label.grid(row = 4, column = 1)
-        
+	
+	#on_click
+    #Executes the click of the board space.
+	#Sends which board space was clicked as parameter. 
+	#Returns nothing.
     def on_click(self, board_space):
         if self.controller.determine_winner_text()=="":
             self.controller.change_state(board_space)
             self.create_widgets()
         
-
-#TODO: Implement the text based controller.
 class TextView:
 
     def __init__(self, model, controller):
