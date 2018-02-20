@@ -176,18 +176,31 @@ class GUIView(Frame):
             self.create_widgets()
         
 class TextView:
-
+	
+	#Constructor
+	#Creates an internal reference to the model and controller
+	#takes in a model and a controller
+	#returns nothing (void)
     def __init__(self, model, controller):
         self.model = model
         self.controller = controller
 
+	#printGameBoard
+	#Prints the current game board in a human-readable way
+	#no parameters
+	#returns nothing
     def printGameBoard(self):
         currentBoard = self.model.get_game_board()
 
+		#convert the 1, 2, or 3 from the game board array to -, X, or Y
         print self.controller.determine_game_piece(currentBoard[0]) + " " + self.controller.determine_game_piece(currentBoard[1]) + " " + self.controller.determine_game_piece(currentBoard[2])
         print self.controller.determine_game_piece(currentBoard[3]) + " " + self.controller.determine_game_piece(currentBoard[4]) + " " + self.controller.determine_game_piece(currentBoard[5])
         print self.controller.determine_game_piece(currentBoard[6]) + " " + self.controller.determine_game_piece(currentBoard[7]) + " " + self.controller.determine_game_piece(currentBoard[8])
 
+	#game_loop
+	#Controls the flow of the game. one game_loop is equivalent to a single player turn. 
+	#no parameters
+	#returns nothing
     def game_loop(self):
         print
         print
@@ -210,10 +223,10 @@ class TextView:
             try:
                 move = int(moveInput) - 1
                 
+				#if true, the move was taken successfully
                 if self.controller.change_state(move):
                     needInput = False
                     print "INPUT TAKEN"
-                    #move successful
                 else:
                     print "INPUT NOT TAKEN. TRY AGAIN"
                     needInput = True
@@ -269,4 +282,4 @@ print "Game over"
 
 
 
-#TODO: Implement testing methods in a seperate class.
+#DID: Implement testing methods in a seperate class.
