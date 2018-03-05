@@ -12,13 +12,14 @@ public class Part1 {
 		// Find all of the primes up to sqrt		
 		ArrayList<BigInteger> bigIntegerList = findPrimes(highValue);
 		ArrayList<BigInteger> actualList = new ArrayList<BigInteger>();
-		
-		recursion(bigIntegerList, actualList, highValue);
+		BigInteger[] primeNumbers= new BigInteger[bigIntegerList.size()];
+		bigIntegerList.toArray(primeNumbers);
+		findFactors(primeNumbers, actualList, highValue);
 		
 		System.out.println(actualList);
 		
 	}
-	
+	/*
 	public static void recursion(ArrayList<BigInteger> bigIntegerList, ArrayList<BigInteger> actualList, BigInteger highValue) {
 		System.out.println("===" + highValue + "===");
 		for (int i = bigIntegerList.size() - 1; i >= 0; i--) {
@@ -31,7 +32,31 @@ public class Part1 {
 		}
 		System.out.println("FINISHED " + highValue);
 	}
-	
+	*/
+	public static void findFactors(BigInteger[] bigIntegerArray, ArrayList<BigInteger> actualList, BigInteger highValue) {
+		System.out.println("highvalue + "+highValue);
+		boolean found = false;
+		for (int x=0; x<bigIntegerArray.length; x++) {
+			if(bigIntegerArray[x].equals(highValue)) {
+				BigInteger temp = new BigInteger(bigIntegerArray[x].toString());
+				actualList.add(temp);
+				found=true;
+				break;
+			}
+		}
+		if(!found){
+			for (int i = 0; i < bigIntegerArray.length && bigIntegerArray[i].compareTo(highValue) < 1; i++) {
+				if (highValue.mod(bigIntegerArray[i]).equals(BigInteger.ZERO)) {
+					BigInteger newValue = new BigInteger(highValue.divide(bigIntegerArray[i]).toString());
+					actualList.add(bigIntegerArray[i]);
+					System.out.println(newValue);
+					findFactors(bigIntegerArray, actualList, newValue);
+					break;
+				}
+			}
+			
+		}
+	}
 	public static ArrayList<BigInteger> findPrimes(BigInteger highValue) {
 		ArrayList<BigInteger> bigIntegerList = new ArrayList<BigInteger>();
 		BigDecimal bigdec = new BigDecimal(highValue);
