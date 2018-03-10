@@ -18,19 +18,21 @@ public class PrimeFactors {
 		System.out.print("High Value: ");
 		BigInteger highValue = (BigInteger) s.nextBigInteger();
 	
-		System.out.print("Max Threads: ");
+		System.out.print("Threads per Server: ");
 		
-		int maxThreads = s.nextInt(); 
+		int threads = s.nextInt(); 
 				
-		for(int i = maxThreads; i >= 1; i /= 2) {
+		/*for(int i = maxThreads; i >= 1; i /= 2) {
 			System.out.println("====================");
-			doPrimeFactorization(i, highValue);
-		}
+			dispatchNumbers(i, highValue);
+		}*/
+		
+		dispatchNumbers(threads, highValue);
 
 		System.out.println("Done");
 	}
 	
-	public static void doPrimeFactorization(int threads, BigInteger highValue) {
+	public static void dispatchNumbers(int threads, BigInteger highValue) {
 		System.out.println("Threads: " + threads);
 		List<BigInteger> bigIntegerList = Collections.synchronizedList(new ArrayList<BigInteger>());
 				
