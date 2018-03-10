@@ -30,9 +30,13 @@ public class WorkServer {
 			ObjectOutputStream outToDispatcher = new ObjectOutputStream(dispatcherSocket.getOutputStream());                   
 			ObjectInputStream inFromDispatcher = new ObjectInputStream(dispatcherSocket.getInputStream());
 			
+			System.out.println("Listening");
+			
 			Object inputObject;
 			while ((inputObject = inFromDispatcher.readObject()) != null) {
 				List<BigInteger> toCheck = (ArrayList<BigInteger>)inputObject;
+				System.out.println("Found " + toCheck);
+				
 				List<BigInteger> output = Collections.synchronizedList(new ArrayList<BigInteger>());
 				
 				FindPrimes finder = new FindPrimes(toCheck, output, 0);

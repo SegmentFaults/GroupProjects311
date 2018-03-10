@@ -26,8 +26,8 @@ public class Dispatcher {
 	static ObjectInputStream inFromWorker4;
 	
 	public static void main(String[] args) {
-
-		if (args.length != 1) {
+		System.out.println(args.length);
+		if (args.length != 6) {
 			System.err.println("Usage: java Dispatcher <listening port number> <server 1 ip> <server 2 ip> <server 3 ip> <server 4 ip> <server port>");
 			System.exit(1);
 		}
@@ -73,10 +73,15 @@ public class Dispatcher {
 			
 			String inputLine;
 			while ((inputLine = inFromClient.readLine()) != null) {
-				BigInteger value = new BigInteger(inputLine);				
-				outToClient.println("Calculating stuff for " + value);
+				BigInteger value = new BigInteger(inputLine);
 				
+				System.out.println("Found " + value);
+
+				outToClient.println("Calculating stuff for " + value);
+								
 				List<BigInteger> factors = primeFactorization(value);
+				
+				System.out.println("Calculated " + factors);
 				
 				outToClient.println(factors);
 			}
@@ -118,10 +123,10 @@ public class Dispatcher {
 			outToWorker4.writeObject(integerSets.get(3));
 
 			
-			List<BigInteger> worker1Output = (ArrayList<BigInteger>)inFromWorker1.readObject();
-			List<BigInteger> worker2Output = (ArrayList<BigInteger>)inFromWorker2.readObject();
-			List<BigInteger> worker3Output = (ArrayList<BigInteger>)inFromWorker3.readObject();
-			List<BigInteger> worker4Output = (ArrayList<BigInteger>)inFromWorker4.readObject();
+			List<BigInteger> worker1Output = (List<BigInteger>)inFromWorker1.readObject();
+			List<BigInteger> worker2Output = (List<BigInteger>)inFromWorker2.readObject();
+			List<BigInteger> worker3Output = (List<BigInteger>)inFromWorker3.readObject();
+			List<BigInteger> worker4Output = (List<BigInteger>)inFromWorker4.readObject();
 
 			allOutputs.addAll(worker1Output);
 			allOutputs.addAll(worker2Output);
