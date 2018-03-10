@@ -3,6 +3,10 @@
 javac FindPrimes.java
 javac WorkServer.java
 
-echo Launching Work Server
+while :
+do
+	echo "CTRL+C to stop"
+	echo Launching Work Server
+	java WorkServer 3131
+done
 
-java WorkServer 3131

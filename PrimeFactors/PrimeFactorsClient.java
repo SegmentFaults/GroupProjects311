@@ -27,10 +27,15 @@ public class PrimeFactorsClient {
 			) 
 		{
 			String userInput;
-			while ((userInput = stdIn.readLine()) != null) {
+			while (true) {
+				System.out.print("Enter a number: ");
+				userInput = stdIn.readLine();
+						
 				out.println(userInput);
 				
 				System.out.println("echo: " + in.readLine());
+				System.out.println("Calculated: " + in.readLine());
+				System.out.println("====================");
 			}
 			
 		} catch (UnknownHostException e) {
