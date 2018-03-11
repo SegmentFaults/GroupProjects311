@@ -1,0 +1,6 @@
+After you have SSHd into all of the servers, you can now use the git repo that is on the servers.
+
+So, what you should do is on server one, navigate to the directory and run "ConfigureDispatcher.sh"
+On the other 4 run the "ConfigureWorker.sh".
+
+You can then run the Client. 
