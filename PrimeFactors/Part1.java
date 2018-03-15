@@ -4,35 +4,31 @@ import java.math.MathContext;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * CSE 311 Project 2
+ * @author Travis, Nick, Mike, Connor
+ * This class is the second class for phase 1. It will listen to a server and then respond with an echo
+ * 		A class that takes a user input of type BigIntegers and computes the factors of that input number.
+ * 		Cout's the found factors.
+ * DATE: 3/10/2018
+ */
 public class Part1 {
 	public static void main(String[] args) {
 		Scanner s= new Scanner(System.in);
 		BigInteger highValue =(BigInteger) s.nextBigInteger();
-	
+
 		// Find all of the primes up to sqrt		
 		ArrayList<BigInteger> bigIntegerList = findPrimes(highValue);
 		ArrayList<BigInteger> actualList = new ArrayList<BigInteger>();
 		BigInteger[] primeNumbers= new BigInteger[bigIntegerList.size()];
 		bigIntegerList.toArray(primeNumbers);
 		findFactors(primeNumbers, actualList, highValue);
-		
+
 		System.out.println(actualList);
-		
+
 	}
-	/*
-	public static void recursion(ArrayList<BigInteger> bigIntegerList, ArrayList<BigInteger> actualList, BigInteger highValue) {
-		System.out.println("===" + highValue + "===");
-		for (int i = bigIntegerList.size() - 1; i >= 0; i--) {
-			System.out.println(bigIntegerList.get(i));
-			if (!highValue.equals(BigInteger.ONE) && highValue.mod(bigIntegerList.get(i)).equals(BigInteger.ZERO)) {
-				actualList.add(bigIntegerList.get(i));
-				highValue = highValue.divide(bigIntegerList.get(i));
-				recursion(findPrimes(highValue), actualList, highValue);
-			}
-		}
-		System.out.println("FINISHED " + highValue);
-	}
-	*/
+
+	//Method to compute factors. Takes in BigInteger array, an arraylist of BigInteger, and a BigInteger value
 	public static void findFactors(BigInteger[] bigIntegerArray, ArrayList<BigInteger> actualList, BigInteger highValue) {
 		System.out.println("highvalue + "+highValue);
 		boolean found = false;
@@ -54,42 +50,53 @@ public class Part1 {
 					break;
 				}
 			}
-			
+
 		}
 	}
+
+	/**
+	 * Takes a BigInteger, makes an arrayList of BigInteger type, and adds the computed primes to the arrayList.
+	 * @param highValue
+	 * @return ArrayList<BigInteger>
+	 */
 	public static ArrayList<BigInteger> findPrimes(BigInteger highValue) {
 		ArrayList<BigInteger> bigIntegerList = new ArrayList<BigInteger>();
 		BigDecimal bigdec = new BigDecimal(highValue);
 		BigInteger squareRootValue = sqRoot(bigdec.toBigInteger());
 		squareRootValue = squareRootValue.add(BigInteger.ONE);
-		
+
 		for (BigInteger i = BigInteger.valueOf(2); i.compareTo(highValue) < 1; i=i.add(BigInteger.ONE)) {
 
-		//for (BigInteger i = squareRootValue; i.compareTo(BigInteger.valueOf(2)) > -1; i=i.subtract(BigInteger.ONE)) {
+			//for (BigInteger i = squareRootValue; i.compareTo(BigInteger.valueOf(2)) > -1; i=i.subtract(BigInteger.ONE)) {
 			if (isPrime(i)) {
 				bigIntegerList.add(i);
 			} else {
 				continue;
 			}
 		}
-		
+
 		return bigIntegerList;
 	}
-	
+
+	/**
+	 * A method called to check whether a BigInteger is prime.
+	 * @param check 
+	 * @return Boolean
+	 */
 	static boolean isPrime(BigInteger check) {
 		BigDecimal bigdec = new BigDecimal(check);
 		BigInteger incrementValue=new BigInteger("1");
 		BigInteger squareRootValue = sqRoot(bigdec.toBigInteger());
-		
+
 		squareRootValue = squareRootValue.add(incrementValue);
-	    for (BigInteger i = BigInteger.valueOf(2);
+		for (BigInteger i = BigInteger.valueOf(2);
 				i.compareTo(squareRootValue)<1;
 				i=i.add(incrementValue)) {
-	        if (check.mod(i).equals(BigInteger.ZERO) && !check.equals(i)) {
-		            return false;
-		        }
-	    }
-	    return true;
+			if (check.mod(i).equals(BigInteger.ZERO) && !check.equals(i)) {
+				return false;
+			}
+		}
+		return true;
 	}
 	/**
 	 * 
@@ -101,25 +108,7 @@ public class Part1 {
 	 * @date 	February 22, 2018
 	 * 
 	 */
-	 
-	/*public static BigInteger sqRoot(BigDecimal num) {
-		BigDecimal approx1;
-		BigDecimal approx2;
-		approx1 = num;
-		approx2 = new BigDecimal("1.0");
-		BigDecimal two = new BigDecimal("2.0");
-		BigDecimal delta = new BigDecimal("0.5");
-		if (num.equals(BigDecimal.valueOf(740))) {
-			System.out.println("HI");
-		}
-		while (  ( approx1.subtract(approx2)).abs().compareTo(delta) > 0 ) {
-			System.out.println(( approx1.subtract(approx2)).abs().compareTo(delta));
-			approx1 = (approx1.add(approx2).divide(two, 2));
-			approx2 = (num.divide(approx1, 2));
-		}
-		return approx2.toBigInteger();
-	}*/
-	
+
 	public static BigInteger sqRoot(BigInteger n) {
 		BigInteger a = BigInteger.ONE;
 		BigInteger b = n.shiftRight(5).add(BigInteger.valueOf(8));

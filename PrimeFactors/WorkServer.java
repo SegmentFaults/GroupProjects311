@@ -11,12 +11,22 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * CSE 311 Project 2
+ * @author Travis, Nick, Mike, Connor
+ *   This class is part of phase 4 and 5. This class is used to setup a number of servers that will
+ *   Do the work / compute factors for the given numbers. For this project we used 4 work servers. 
+ *   
+ * Some code adopted from: https://docs.oracle.com/javase/tutorial/networking/sockets/readingWriting.html
+ * DATE: 3/10/2018
+ */
 public class WorkServer {
 
 	public static void main(String[] args) {
 
 		final int threads = 4;
 		
+		//Confirming that the only received argument is the port number to listen too.
 		if (args.length != 1) {
 			System.err.println("Usage: java WorkServer <port number>");
 			System.exit(1);
@@ -24,6 +34,8 @@ public class WorkServer {
 
 		int portNumber = Integer.parseInt(args[0]);
 
+		// Setups connection to the socket. Continues to accept inputs from the dispatcher
+		// 		as arguments come in. 
 		try {
 			ServerSocket serverSocket = new ServerSocket(Integer.parseInt(args[0]));
 			Socket dispatcherSocket = serverSocket.accept();     
@@ -32,6 +44,7 @@ public class WorkServer {
 			
 			System.out.println("Listening");
 			
+			//Reads from socket
 			Object inputObject;
 			while ((inputObject = inFromDispatcher.readObject()) != null) {
 				List<BigInteger> toCheck = (ArrayList<BigInteger>)inputObject;
@@ -41,17 +54,8 @@ public class WorkServer {
 				
 				FindPrimes finder = new FindPrimes(toCheck, output, 0);
 				
+				//finds primes
 				finder.findPrimes();
-				
-				/*int counter = 0;
-				for(BigInteger num : toCheck) {
-					if(counter >= threads) {
-						counter = 0;
-					}
-					
-					counter++;
-					
-				}*/
 				
 				outToDispatcher.writeObject(output);			
 			}

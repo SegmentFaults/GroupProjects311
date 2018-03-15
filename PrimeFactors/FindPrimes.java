@@ -4,6 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
 
+/**
+ * CSE 311 Project 2
+ * @author Travis, Nick, Mike, Connor
+ * A class to compute primes of some BigInteger input value.
+ * DATE: 3/10/2018
+ */
 public class FindPrimes implements Callable<Void> {
 
 	private List<BigInteger> input;
@@ -17,6 +23,9 @@ public class FindPrimes implements Callable<Void> {
 		this.threadID = threadID;
 	}
 	
+	/**
+	 * Method to call findPrimes()
+	 */
 	@Override
 	public Void call() throws Exception {
 		findPrimes();
@@ -24,6 +33,10 @@ public class FindPrimes implements Callable<Void> {
 		return null;
 	}
 	
+	/**
+	 * Iterates over the variable: input and determines of that index value isPrime.
+	 * adds primes to output, else nothing.
+	 */
 	public void findPrimes() {
 		for (BigInteger in : input) {
 			if (isPrime(in)) {
@@ -31,7 +44,13 @@ public class FindPrimes implements Callable<Void> {
 			}
 		}
 	}
+
 	
+	/**
+	 * A method to check whether a bigInteger is prime or not. Uses the square root method.
+	 * @param check
+	 * @return boolean
+	 */
 	boolean isPrime(BigInteger check) {
 		BigDecimal bigdec = new BigDecimal(check);
 		BigInteger incrementValue=new BigInteger("1");
