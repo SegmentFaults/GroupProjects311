@@ -31,27 +31,30 @@ public class PrimeFactorsClient {
 		try (
 				Socket echoSocket = new Socket(hostName, portNumber);
 				PrintWriter out = new PrintWriter(echoSocket.getOutputStream(), true);
-				
+
 				BufferedReader in = new BufferedReader(new InputStreamReader(echoSocket.getInputStream()));
-				
+
 				BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in))
-			) 
+			)
 		{
 			//Gets user input
+			long startTime = System.nanoTime();
 			String userInput;
-			while (true) {
-				System.out.print("Enter a number: ");
+			// we are going to take in 50 numbers.
+			int x = 0;
+			while (x<50) {
+				// System.out.print("Enter a number: ");
 				userInput = stdIn.readLine();
-				
+
 				//Sends user input through socket
 				out.println(userInput);
-				
+
 				//Formatting pre answer look.
-				System.out.println("echo: " + in.readLine());
-				System.out.println("Calculated: " + in.readLine());
-				System.out.println("====================");
+				x++;
 			}
-			
+			long endTime   = System.nanoTime();
+			long totalTime = endTime - startTime;
+			System.out.println(totalTime);
 		} catch (UnknownHostException e) {
 			System.err.println("Don't know about host " + hostName);
 			System.exit(1);

@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * CSE 311 Project 2
  * @author Travis, Nick, Mike, Connor
  * This class is the second class for phase 1. It will listen to a server and then respond with an echo
- * 		When the client sends over an argument. 
+ * 		When the client sends over an argument.
  *  Some code adopted from: https://docs.oracle.com/javase/tutorial/networking/sockets/readingWriting.html
  *  DATE: 3/10/2018
  */
@@ -36,7 +36,10 @@ public class PrimeServer {
 						new InputStreamReader(clientSocket.getInputStream()));
 				) {
 			String inputLine;
-			while ((inputLine = in.readLine()) != null) {
+			int x = 0;
+			long startTime = System.nanoTime();
+			while (x<50) {
+				inputLine = in.readLine()
 				BigInteger highValue = new BigInteger(inputLine);
 
 				// Find all of the primes up to sqrt
@@ -47,7 +50,11 @@ public class PrimeServer {
 				findFactors(primeNumbers, actualList, highValue);
 
 				out.println(actualList);
+				x++;
 			}
+			long endTime   = System.nanoTime();
+			long totalTime = endTime - startTime;
+			System.out.println(totalTime);
 		} catch (IOException e) {
 			System.out.println("Exception caught when trying to listen on port "
 					+ portNumber + " or listening for a connection");

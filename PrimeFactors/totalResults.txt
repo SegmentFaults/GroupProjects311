@@ -1,0 +1,16 @@
+n-tier
+768488
+1625234
+2591451
+single client server
+619277
+642925
+715337
+Single Thread Single Computer
+617221
+639932
+713317
+4 Thread Single Computer
+529192
+852352
+1013297

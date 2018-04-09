@@ -4,7 +4,7 @@ import java.net.*;
 /**
  * CSE 311 Project 2
  * @author Travis, Nick, Mike, Connor
- * The EchoClient class allows a client to connect to a server, send a string to the server, and 
+ * The EchoClient class allows a client to connect to a server, send a string to the server, and
  * 		the server will respond with an echo command.
  * Some code adopted from: https://docs.oracle.com/javase/tutorial/networking/sockets/readingWriting.html
  * DATE: 3/10/2018
@@ -30,14 +30,17 @@ public class EchoClient {
 				BufferedReader in = new BufferedReader(new InputStreamReader(echoSocket.getInputStream()));
 
 				BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in))
-				) 
+				)
 		{
-			String userInput;
-			while ((userInput = stdIn.readLine()) != null) {
-				out.println(userInput);
+			int x = 0;
 
-				System.out.println("echo: " + in.readLine());
+			while (x<50) {
+				//out.println(userInput);
+				x++;
 			}
+			long endTime   = System.nanoTime();
+			long totalTime = endTime - startTime;
+			System.out.println(totalTime);
 
 		} catch (UnknownHostException e) {
 			System.err.println("Don't know about host " + hostName);
