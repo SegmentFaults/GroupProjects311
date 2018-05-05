@@ -1,0 +1,48 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Debug (Launch)-CarRentalSystem<pse16l2e2_CarRentalSystem>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopOnEntry": false,
+            "mainClass": "edu.tum.cs.l2.pse.CarRentalSystem",
+            "projectName": "pse16l2e2_CarRentalSystem",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Client<pse16l4e1_StrategyPattern>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopOnEntry": false,
+            "mainClass": "de.tum.cs.i1.pse.Client",
+            "projectName": "pse16l4e1_StrategyPattern",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-MVCTemperatureConverter<pse16l5h1_mvc>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopOnEntry": false,
+            "mainClass": "de.tum.cs.i1.pse.MVCTemperatureConverter",
+            "projectName": "pse16l5h1_mvc",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Debug (Attach)",
+            "request": "attach",
+            "hostName": "localhost",
+            "port": 0
+        }
+    ]
+}

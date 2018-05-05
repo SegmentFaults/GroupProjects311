@@ -1,0 +1,169 @@
+[
+  {
+    "class": "Command",
+    "methods": {
+      "execute": {
+        "parameters": [
+          "void"
+        ],
+        "returnType": "void"
+      },
+      "undo": {
+        "parameters": [
+          "void"
+        ],
+        "returnType": "void"
+      },
+      "redo": {
+        "parameters": [
+          "void"
+        ],
+        "returnType": "void"
+      }
+    }
+  },
+  {
+    "class": "LowerFCommand",
+    "superclass": "Command",
+    "methods": {
+      "execute": {
+        "parameters": [
+          "void"
+        ],
+        "returnType": "void"
+      },
+      "undo": {
+        "parameters": [
+          "void"
+        ],
+        "returnType": "void"
+      },
+      "redo": {
+        "parameters": [
+          "void"
+        ],
+        "returnType": "void"
+      }
+    }
+  },
+  {
+    "class": "LowerCCommand",
+    "superclass": "Command",
+    "methods": {
+      "execute": {
+        "parameters": [
+          "void"
+        ],
+        "returnType": "void"
+      },
+      "undo": {
+        "parameters": [
+          "void"
+        ],
+        "returnType": "void"
+      },
+      "redo": {
+        "parameters": [
+          "void"
+        ],
+        "returnType": "void"
+      }
+    }
+  },
+  {
+    "class": "LowerKCommand",
+    "superclass": "Command",
+    "methods": {
+      "execute": {
+        "parameters": [
+          "void"
+        ],
+        "returnType": "void"
+      },
+      "undo": {
+        "parameters": [
+          "void"
+        ],
+        "returnType": "void"
+      },
+      "redo": {
+        "parameters": [
+          "void"
+        ],
+        "returnType": "void"
+      }
+    }
+  },
+  {
+    "class": "RaiseCCommand",
+    "superclass": "Command",
+    "methods": {
+      "execute": {
+        "parameters": [
+          "void"
+        ],
+        "returnType": "void"
+      },
+      "undo": {
+        "parameters": [
+          "void"
+        ],
+        "returnType": "void"
+      },
+      "redo": {
+        "parameters": [
+          "void"
+        ],
+        "returnType": "void"
+      }
+    }
+  },
+  {
+    "class": "RaiseFCommand",
+    "superclass": "Command",
+    "methods": {
+      "execute": {
+        "parameters": [
+          "void"
+        ],
+        "returnType": "void"
+      },
+      "undo": {
+        "parameters": [
+          "void"
+        ],
+        "returnType": "void"
+      },
+      "redo": {
+        "parameters": [
+          "void"
+        ],
+        "returnType": "void"
+      }
+    }
+  },
+  {
+    "class": "RaiseKCommand",
+    "superclass": "Command",
+    "methods": {
+      "execute": {
+        "parameters": [
+          "void"
+        ],
+        "returnType": "void"
+      },
+      "undo": {
+        "parameters": [
+          "void"
+        ],
+        "returnType": "void"
+      },
+      "redo": {
+        "parameters": [
+          "void"
+        ],
+        "returnType": "void"
+      }
+    }
+  }
+]

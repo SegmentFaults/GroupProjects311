@@ -2,12 +2,6 @@ package edu.tum.cs.l2.pse;
 
 import java.util.Date;
 
-/**
- * TODO: Add the missing method
- * 
- *
- */
-
 public class Rental {
 	private Date submissionDate;
 	private Date startDate;
@@ -72,5 +66,8 @@ public class Rental {
 
 	}
 
+	public double computeExpense() {
+		return (this.endDate - this.startDate) * getCar.getDailyCost();
+	}
 
 }
