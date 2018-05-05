@@ -7,12 +7,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-/**
- * TODO: Create the missing Person class.
- *
- * 
- *
- */
 
 public class CarRentalSystem {
 	private ArrayList<Rental> rentals = new ArrayList<Rental>();
@@ -43,8 +37,20 @@ public class CarRentalSystem {
 		return users;
 	}
 
-	public void saveRental(Rental r) {
-		// TODO: Implement the saveRental() method according to the problem statement. 
+	public void saveRental(Rental r) throws Exception { 
+		if (!users.contains(r.getRenter())){
+			if (r.getStartDate() != null && r.getEndDate() != null && r.getRenter() != null && r.getCar() != null){
+				this.rentals.add(r);
+				this.addCar(r.getCar());
+				this.users.add(r.getRenter());
+			}
+			else{
+				throw new Exception();
+			}
+		}
+		else {
+			throw new Exception();
+		}
 	}
 
 	public ArrayList<Rental> getRentals() {
@@ -69,7 +75,7 @@ public class CarRentalSystem {
 		return temp;
 	}
 
-	public static void main(String args[]) {
+	public static void main(String args[]) throws Exception {
 
 		Calendar cal1 = new GregorianCalendar();
 		Calendar cal2 = new GregorianCalendar();

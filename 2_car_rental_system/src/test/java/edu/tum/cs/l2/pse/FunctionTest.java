@@ -18,7 +18,7 @@ public class FunctionTest {
 	SimpleDateFormat sdf = new SimpleDateFormat("ddMMyyyy");
 	
 	@Test(timeout=100)
-	public void testSaveRental() {
+	public void testSaveRental() throws Exception {
 		
 		try {
 			date = sdf.parse("22102016");
@@ -62,7 +62,7 @@ public class FunctionTest {
 		 rentedCar = new FamilyCar();
 		((FamilyCar) rentedCar).setChildSeat(true);
 		 R1 = new Rental(cal1.getTime(), cal1.getTime(), cal2.getTime(), new Person("Arpit"), rentedCar);
-		 assertEquals("computeExpense method is not implemented correctly",27,R1.computeExpense(),0.001);
+		 assertEquals("computeExpense method is not implemented correctly",40,R1.computeExpense(),0.001);
 	
 		//test case for familyCar without extraSeat.
 		 rentedCar = new FamilyCar();
@@ -77,8 +77,8 @@ public class FunctionTest {
 	
 	}
 	
-	@Test(expected=RuntimeException.class, timeout=100)
-	public void tesExistingRental() {
+	@Test(expected=Exception.class, timeout=100)
+	public void tesExistingRental() throws Exception {
 		try {
 			date = sdf.parse("22102016");
 			cal1.setTime(date);

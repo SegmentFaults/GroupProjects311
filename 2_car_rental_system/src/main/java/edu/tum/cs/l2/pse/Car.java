@@ -1,30 +1,31 @@
 package edu.tum.cs.l2.pse;
 
 
-
-
-/*
- * TODO: add the missing attributes and methods
- * TODO: Add the missing abstract method
- * TODO: Create the missing subclasses
- *
- */
-
 abstract public class Car {
 	private String color;
 	private int plateNumber;
 	private int capacity;
 
+	public Car(String color, int plateNumber, int capacity) {
+		this.color = color;
+		this.plateNumber = plateNumber;
+		this.capacity = capacity;
+	}
+	public Car(){
+		this.color = "Black";
+		this.plateNumber = -1;
+		this.capacity = -1;
+	}
 	public String getColor() {
 		return color;
 	}
 	public void setColor(String color) {
 		this.color = color;
 	}
-	public String getPlateNumber() {
+	public int getPlateNumber() {
 		return plateNumber;
 	}
-	public void setPlateNumber(String plateNumber) {
+	public void setPlateNumber(int plateNumber) {
 		this.plateNumber = plateNumber;
 	}
 	public int getCapacity(){

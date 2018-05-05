@@ -67,7 +67,7 @@ public class Rental {
 	}
 
 	public double computeExpense() {
-		return (this.endDate - this.startDate) * getCar.getDailyCost();
+		return ((this.endDate.getTime() - this.startDate.getTime()) /(1000 * 60 * 60 * 24)) * getCar().getDailyCost();
 	}
 
 }
