@@ -1,6 +1,6 @@
 package de.tum.cs.i1.pse;
 
-public class MergeSort {
+public class MergeSort implements SortStrategy {
 
 	// TODO: add the missing interface
 

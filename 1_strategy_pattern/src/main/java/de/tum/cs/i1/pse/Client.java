@@ -62,7 +62,9 @@ public class Client {
 	public static void main(String[] args) {
 		// TODO: Implement the Context class with required methods and attributes
 		// TODO: create the policy and the context.
-
+		Context sortingContext = new Context();
+		Policy policy = new Policy(sortingContext);
+		
 		int[] array = createIntegerArray();
 
 		for (int i = 0; i < 10; i++) {

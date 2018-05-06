@@ -1,6 +1,6 @@
 package de.tum.cs.i1.pse;
 
-public class QuickSort {
+public class QuickSort implements SortStrategy {
 
 	// TODO: add the missing interface
 
