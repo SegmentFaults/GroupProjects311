@@ -1,4 +1,4 @@
-#Strategy Pattern
+# Strategy Pattern
 
 Modified by Connor Schmidt
 ==========================
@@ -11,24 +11,24 @@ Modified by Connor Schmidt
 Changes from original:
 ----------------------
 
-##Please note: 
+## Please note: 
 	There were TODO items in (almost) every class that needed to be modified.
 	The Context class did not exist and therefore did not have TODO items.
 	The Context class was created through fixing compiler errors and failing tests.
 
-##Context.java
+## Context.java
 	created the class
 	implemented properties and methods to fix compiler errors and pass tests
 
-##Client.java:
+## Client.java:
 	main:
 		created the sortingContext
 		created the policy
 
-##MergeSort.java:
+## MergeSort.java:
 	implemented the SortStrategy interface
 	
-##Policy.java:
+## Policy.java:
 	added a context property
 	
 	constructor:
@@ -37,8 +37,8 @@ Changes from original:
 	configure:
 		set the sorting strategy on the context
 		
-##QuickSort.java:
+## QuickSort.java:
 	implemented the SortStrategy interface
 	
-##SortStrategy.java:
+## SortStrategy.java:
 	added the interface method "performSort" with int[] as a parameter
