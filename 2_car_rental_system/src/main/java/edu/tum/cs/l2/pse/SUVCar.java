@@ -5,6 +5,7 @@ package edu.tum.cs.l2.pse;
 * 6 May 2018
 * Source https://github.com/togiberlin/java_design_pattern_koans
 * This class is made by me. 
+* This class is another extension of the car with a terrain mode. 
 */
 
 public class SUVCar extends Car{
