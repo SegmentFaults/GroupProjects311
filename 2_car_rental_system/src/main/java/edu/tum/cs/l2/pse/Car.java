@@ -1,5 +1,12 @@
 package edu.tum.cs.l2.pse;
 
+/*
+* @Author Michael Gentile
+* Project #4
+* 6 May 2018
+* Source https://github.com/togiberlin/java_design_pattern_koans
+* I made the constructors, some of the getters and setters and getDailyCost
+*/
 
 abstract public class Car {
 	private String color;

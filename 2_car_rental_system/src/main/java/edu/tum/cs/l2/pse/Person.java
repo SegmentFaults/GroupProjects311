@@ -1,6 +1,13 @@
 package edu.tum.cs.l2.pse;
 
 import java.util.Date;
+/*
+* @Author Michael Gentile
+* Project #4
+* 6 May 2018
+* Source https://github.com/togiberlin/java_design_pattern_koans\
+* This whole class is original
+*/
 
 public class Person{
     private String name;

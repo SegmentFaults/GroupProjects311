@@ -6,7 +6,13 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-
+/*
+* @Author Michael Gentile
+* Project #4
+* 6 May 2018
+* Source https://github.com/togiberlin/java_design_pattern_koans
+* Made the Save rental method
+*/
 
 public class CarRentalSystem {
 	private ArrayList<Rental> rentals = new ArrayList<Rental>();

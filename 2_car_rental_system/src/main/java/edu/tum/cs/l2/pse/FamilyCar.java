@@ -1,4 +1,11 @@
 package edu.tum.cs.l2.pse;
+/*
+* @Author Michael Gentile
+* Project #4
+* 6 May 2018
+* Source https://github.com/togiberlin/java_design_pattern_koans
+* This class is original by me. 
+*/
 
 public class FamilyCar extends Car{
     private boolean childSeat;
