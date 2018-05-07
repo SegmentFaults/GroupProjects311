@@ -6,6 +6,7 @@ package edu.tum.cs.l2.pse;
 * 6 May 2018
 * Source https://github.com/togiberlin/java_design_pattern_koans
 * I made the constructors, some of the getters and setters and getDailyCost
+* The purpose of this file is to have a general inheritance hierarchy.
 */
 
 abstract public class Car {
