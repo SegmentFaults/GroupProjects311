@@ -1,3 +1,15 @@
+/*
+ * 5/7/2018
+ * Source Project: https://github.com/togiberlin/java_design_pattern_koans/tree/exercises/2_behavioral_patterns/1_strategy_pattern
+ * 
+ * Team: Michael Gentile, Travis Hawks, Nick Hutchison, Connor Schmidt
+ * 
+ * Description:
+ * Verifies the structure of the system's methods and classes.
+ * 
+ * NOT edited.
+ */
+
 package de.tum.cs.i1.pse;
 
 import static org.junit.Assert.assertEquals;

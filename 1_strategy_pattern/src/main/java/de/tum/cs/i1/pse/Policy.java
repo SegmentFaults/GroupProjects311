@@ -1,3 +1,15 @@
+/*
+ * 5/7/2018
+ * Source Project: https://github.com/togiberlin/java_design_pattern_koans/tree/exercises/2_behavioral_patterns/1_strategy_pattern
+ * 
+ * Edited by: Connor Schmidt schmidcc@miamioh.edu
+ * Team: Michael Gentile, Travis Hawks, Nick Hutchison
+ * 
+ * Description:
+ * Changes between the sorting method for the context based on parameters that are important to the implementer.
+ * 
+ */
+
 package de.tum.cs.i1.pse;
 
 public class Policy {
