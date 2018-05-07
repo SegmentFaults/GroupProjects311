@@ -12,6 +12,7 @@ import java.util.GregorianCalendar;
 * 6 May 2018
 * Source https://github.com/togiberlin/java_design_pattern_koans
 * Made the Save rental method
+* This is the proxy by which things go through for the methods.
 */
 
 public class CarRentalSystem {
