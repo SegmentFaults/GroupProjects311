@@ -7,6 +7,7 @@ import java.util.Date;
 * 6 May 2018
 * Source https://github.com/togiberlin/java_design_pattern_koans\
 * This whole class is original
+* This class just contains general information for a person to see if they can rent. 
 */
 
 public class Person{
