@@ -7,6 +7,7 @@ import java.util.Date;
 * 6 May 2018
 * Source https://github.com/togiberlin/java_design_pattern_koans
 * Compute expenses was created by me. 
+* This class essentially wraps the car and the types of car and specifies the information of the rental the customer makes.
 */
 
 public class Rental {
