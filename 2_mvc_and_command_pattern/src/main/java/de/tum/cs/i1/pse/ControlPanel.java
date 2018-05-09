@@ -55,23 +55,43 @@ public class ControlPanel implements java.util.Observer {
 	}
 	class RaiseTempListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			controller.increaseC();
+			try {
+				controller.increaseC();
+			} catch (IllegalTemperatureException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 	}
 
 	class LowerTempListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			controller.decreaseC();
+			try {
+				controller.decreaseC();
+			} catch (IllegalTemperatureException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 	}
 	class UndoTempListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			controller.undo();
+			try {
+				controller.undo();
+			} catch (IllegalTemperatureException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 	}
 	class RedoTempListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			controller.redo();
+			try {
+				controller.redo();
+			} catch (IllegalTemperatureException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 	}
 

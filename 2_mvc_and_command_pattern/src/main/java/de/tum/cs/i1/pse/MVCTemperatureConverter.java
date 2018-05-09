@@ -13,6 +13,7 @@ public class MVCTemperatureConverter {
 	
 	public static void main(String args[]) {
 		TemperatureModel temperature = new TemperatureModel();
+		Controller controller = new Controller(temperature);
 		
 		//TODO: Refactor Controller into separate class and initialize it
 		//TODO: In init() function in Controller add different Temperature GUIs as Observers for the Model
@@ -23,7 +24,7 @@ public class MVCTemperatureConverter {
 		//TODO: Provide the implementation for the menu commands Raise temperature, Lower temperature, Undo last command and Redo last Command.
 		//TODO: In Controller create methods to redo and undo actions, delegate them to the Invoker. 
 		//TODO: Add the Control Panel to the View
-		       
+		
 		
 		FahrenheitGUI fahrenheitGUI = new FahrenheitGUI(temperature, new Point(100, 100));
 		fahrenheitGUI.show();

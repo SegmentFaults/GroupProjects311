@@ -9,17 +9,20 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+import de.tum.cs.i1.pse.Controller;
 import de.tum.cs.i1.pse.model.TemperatureModel;
 
 public abstract class TemperatureGUI implements java.util.Observer {
 	
 	@SuppressWarnings("unused")
 	private String label;
-	private TemperatureModel model;
+	protected TemperatureModel model;
+	private Controller controller;
 	private Frame temperatureFrame;
 	private TextField display = new TextField();
 	private Button raiseTempButton = new Button("Raise");
 	private Button lowerTempButton = new Button("Lower");
+	private Button undo = new Button("Undo");
 	
 	TemperatureGUI(String label, TemperatureModel model, Point location) {
 		this.label = label;
@@ -30,6 +33,7 @@ public abstract class TemperatureGUI implements java.util.Observer {
 		Panel buttons = new Panel();
 		buttons.add(raiseTempButton);
 		buttons.add(lowerTempButton);
+		buttons.add(undo);
 		temperatureFrame.add("South", buttons);
 		temperatureFrame.addWindowListener(new CloseListener());
 		model.addObserver(this); // Connect the View to the Model
@@ -37,6 +41,26 @@ public abstract class TemperatureGUI implements java.util.Observer {
 		temperatureFrame.setLocation(location);
 		temperatureFrame.setVisible(true);
 	}
+	
+	
+	TemperatureGUI(String label, Controller controller, Point location) {
+		this.label = label;
+		this.controller = controller;
+		temperatureFrame = new Frame(label);
+		temperatureFrame.add("North", new Label(label));
+		temperatureFrame.add("Center", display);
+		Panel buttons = new Panel();
+		buttons.add(raiseTempButton);
+		buttons.add(lowerTempButton);
+		buttons.add(undo);
+		temperatureFrame.add("South", buttons);
+		temperatureFrame.addWindowListener(new CloseListener());
+		controller.model.addObserver(this); // Connect the View to the Model
+		temperatureFrame.setSize(200, 200);
+		temperatureFrame.setLocation(location);
+		temperatureFrame.setVisible(true);
+	}
+	
 	
 	public void show() {
 		temperatureFrame.setVisible(true);
@@ -66,6 +90,10 @@ public abstract class TemperatureGUI implements java.util.Observer {
 
 	public void addLowerTempListener(ActionListener a) {
 		lowerTempButton.addActionListener(a);
+	}
+	
+	public void addUndoListener(ActionListener a) {
+		undo.addActionListener(a);
 	}
 
 	protected TemperatureModel model() {

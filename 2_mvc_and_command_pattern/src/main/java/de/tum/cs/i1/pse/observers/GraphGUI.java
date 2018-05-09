@@ -9,6 +9,8 @@ import java.awt.Panel;
 import java.awt.Point;
 import java.util.Observable;
 import java.util.Observer;
+
+import de.tum.cs.i1.pse.Controller;
 import de.tum.cs.i1.pse.model.TemperatureModel;
 
 @SuppressWarnings("serial")
@@ -21,6 +23,7 @@ public class GraphGUI extends Frame implements Observer {
 	private TemperatureModel model;
 	private Canvas gaugeCanvas;
 	
+	Controller controller; 
 	
 	public GraphGUI(TemperatureModel model, Point location) {
 		super("Temperature Gauge");
@@ -34,6 +37,20 @@ public class GraphGUI extends Frame implements Observer {
 		setLocation(location);
 		setVisible(true);
 		model.addObserver(this); // Connect to the model
+	}
+	
+	public GraphGUI(Controller controller, Point location) {
+		super("Temperature Gauge");
+		this.controller = controller;
+		Panel Top = new Panel();
+		add("North", Top);
+		gaugeCanvas = new GaugeCanvas();
+		gaugeCanvas.setSize(500, 280);
+		add("Center", gaugeCanvas);
+		setSize(250, 350);
+		setLocation(location);
+		setVisible(true);
+		controller.model.addObserver(this); // Connect to the model
 	}
 
 	public void update(Observable obs, Object o) { // Respond to changes
