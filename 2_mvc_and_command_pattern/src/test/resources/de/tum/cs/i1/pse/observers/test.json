@@ -1,0 +1,82 @@
+[  
+ {
+    "class": "FahrenheitGUI",
+    "superclass": "TemperatureGUI",
+    "fields": {
+    	"controller":"Controller"
+    },
+    "constructors": [
+      {
+        "modifiers": [
+          "public"
+        ],
+        "parameters": [
+          "Controller",
+          "Point"
+        ]
+      }
+    ]
+  }, 
+ {
+    "class": "KelvinGUI",
+    "superclass": "TemperatureGUI",
+    "fields": {
+    	"controller":"Controller"
+    },
+    "constructors": [
+      {
+        "modifiers": [
+          "public"
+        ],
+        "parameters": [
+          "Controller",
+          "Point"
+        ]
+      }
+    ]
+  },  
+ {
+    "class": "GraphGUI",
+    "superclass": "Frame",
+    "constructors": [
+      {
+        "modifiers": [
+          "public"
+        ],
+        "parameters": [
+          "Controller",
+          "Point"
+        ]
+      }
+    ]
+  },     
+ {
+    "class": "SliderGUI",
+    "fields": {
+    	"controller":"Controller"
+    },
+    "constructors": [
+      {
+        "modifiers": [
+          "public"
+        ],
+        "parameters": [
+          "Controller",
+          "Point"
+        ]
+      }
+    ]
+  },   
+ {
+    "class": "TemperatureGUI",
+    "constructors": [
+      {
+        "parameters": [
+          "String",
+          "int",
+          "int"
+        ]
+      }
+    ]
+  }     
+]

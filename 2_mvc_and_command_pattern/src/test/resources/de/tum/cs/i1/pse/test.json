@@ -1,0 +1,78 @@
+[   
+  {
+    "class": "Controller",
+    "fields": {
+      "manageInvoker": "Invoker",
+      "model": "TemperatureModel"
+    },
+    "methods": {
+      "setC": {
+        "modifiers": [
+          "public"
+        ],
+        "parameters": [
+          "double"
+        ],
+        "returnType": "void"
+      },
+      "setK": {
+        "modifiers": [
+          "public"
+        ],
+        "parameters": [
+          "double"
+        ],
+        "returnType": "void"
+      },   
+      "setF": {
+        "modifiers": [
+          "public"
+        ],
+        "parameters": [
+          "double"
+        ],
+        "returnType": "void"
+      },   
+      "undo": {
+        "modifiers": [
+          "public"
+        ],
+        "returnType": "void"
+      },   
+      "redo": {
+        "modifiers": [
+          "public"
+        ],
+        "returnType": "void"
+      }
+	}
+   
+  },
+  {
+    "class": "Invoker",
+    "fields": {
+      "undoStack": "Stack<Command>",
+      "redoStack": "Stack<Command>"
+    },
+    "methods": {
+      "execute": {
+        "parameters": [
+          "Command"
+        ],
+        "returnType": "void"
+      },
+      "undo": {
+        "parameters": [
+          "void"
+        ],
+        "returnType": "void"
+      },
+      "redo": {
+        "parameters": [
+          "void"
+        ],
+        "returnType": "void"
+      }
+    }
+  }
+]

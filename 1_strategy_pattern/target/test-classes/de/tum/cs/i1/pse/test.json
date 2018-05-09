@@ -1,0 +1,66 @@
+[
+  {
+    "class": "Policy",
+    "constructors": [
+      {
+        "modifiers": [ "public" ],
+        "parameters": [ "Context" ]  
+      }
+    ],
+    "fields": {
+        "context": "Context"
+    },
+   
+    "methods": {
+      "configure": {
+        "parameters": [
+          "boolean",
+          "boolean"
+        ],
+      	"returnType": "void"
+      }
+    }
+  },
+  {
+  	"class": "QuickSort", 
+  	"interfaces": [ "SortStrategy" ]
+  },
+  {
+  	"class": "MergeSort", 
+  	"interfaces": [ "SortStrategy" ]
+  },
+  {
+    "class": "Context",
+    "fields": {
+      "sortAlgorithm": "SortStrategy",
+      "array": "int[]"
+    },
+    "methods": {
+      "setArray": {
+        "modifiers": [  "public"  ],
+        "parameters": [ "int[]"   ],
+        "returnType": "void"
+      },
+      "setSortAlgorithm": {
+        "modifiers": [ "public" ],
+        "parameters": [ "SortStrategy"  ],
+        "returnType": "void"
+      },
+      "sort": {
+        "modifiers": [ "public"  ],
+        "parameters": [ ],
+        "returnType": "void"
+      }
+    }
+  },
+  {
+    "class": "SortStrategy",
+    "methods": {
+      "performSort": {
+        "modifiers": [ "public"  ],
+        "parameters": [  "int[]" ],
+        "returnType": "void"
+      }
+    }
+  }
+]

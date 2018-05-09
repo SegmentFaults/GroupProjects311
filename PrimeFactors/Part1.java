@@ -15,22 +15,26 @@ import java.util.Scanner;
 public class Part1 {
 	public static void main(String[] args) {
 		Scanner s= new Scanner(System.in);
+		long startTime = System.currentTimeMillis();
+		for (int x=0; x<50; x++){
 		BigInteger highValue =(BigInteger) s.nextBigInteger();
 
-		// Find all of the primes up to sqrt		
+		// Find all of the primes up to sqrt
 		ArrayList<BigInteger> bigIntegerList = findPrimes(highValue);
 		ArrayList<BigInteger> actualList = new ArrayList<BigInteger>();
 		BigInteger[] primeNumbers= new BigInteger[bigIntegerList.size()];
 		bigIntegerList.toArray(primeNumbers);
 		findFactors(primeNumbers, actualList, highValue);
-
-		System.out.println(actualList);
+	}
+	long endtime = System.currentTimeMillis();
+	System.out.println(endtime-startTime);
+		// System.out.println(actualList);
 
 	}
 
 	//Method to compute factors. Takes in BigInteger array, an arraylist of BigInteger, and a BigInteger value
 	public static void findFactors(BigInteger[] bigIntegerArray, ArrayList<BigInteger> actualList, BigInteger highValue) {
-		System.out.println("highvalue + "+highValue);
+		// System.out.println("highvalue + "+highValue);
 		boolean found = false;
 		for (int x=0; x<bigIntegerArray.length; x++) {
 			if(bigIntegerArray[x].equals(highValue)) {
@@ -45,7 +49,7 @@ public class Part1 {
 				if (highValue.mod(bigIntegerArray[i]).equals(BigInteger.ZERO)) {
 					BigInteger newValue = new BigInteger(highValue.divide(bigIntegerArray[i]).toString());
 					actualList.add(bigIntegerArray[i]);
-					System.out.println(newValue);
+					// System.out.println(newValue);
 					findFactors(bigIntegerArray, actualList, newValue);
 					break;
 				}
@@ -80,7 +84,7 @@ public class Part1 {
 
 	/**
 	 * A method called to check whether a BigInteger is prime.
-	 * @param check 
+	 * @param check
 	 * @return Boolean
 	 */
 	static boolean isPrime(BigInteger check) {
@@ -99,14 +103,14 @@ public class Part1 {
 		return true;
 	}
 	/**
-	 * 
+	 *
 	 * @param num is the BigDecimal number for which we are going to find the square root
 	 * @return  the BigDecimal number which is an approximation to the square root of num
 	 * 			The accuracy of this approximation is determined by the value of the delta
 	 * 			This method uses an iterative method that is analogous to Netwton's method of finding roots.
 	 * @author  James Kiper. PhD
 	 * @date 	February 22, 2018
-	 * 
+	 *
 	 */
 
 	public static BigInteger sqRoot(BigInteger n) {

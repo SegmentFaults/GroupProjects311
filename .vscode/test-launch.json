@@ -1,0 +1,54 @@
+{
+    "run": [
+        {
+            "name": "pse16l2e2_CarRentalSystem",
+            "projectName": "pse16l2e2_CarRentalSystem",
+            "workingDirectory": "c:\\Users\\mikegent\\Desktop\\GroupProjects311",
+            "args": [],
+            "vmargs": [],
+            "preLaunchTask": ""
+        },
+        {
+            "name": "pse16l5h1_mvc",
+            "projectName": "pse16l5h1_mvc",
+            "workingDirectory": "c:\\Users\\mikegent\\Desktop\\GroupProjects311",
+            "args": [],
+            "vmargs": [],
+            "preLaunchTask": ""
+        },
+        {
+            "name": "pse16l4e1_StrategyPattern",
+            "projectName": "pse16l4e1_StrategyPattern",
+            "workingDirectory": "c:\\Users\\mikegent\\Desktop\\GroupProjects311",
+            "args": [],
+            "vmargs": [],
+            "preLaunchTask": ""
+        }
+    ],
+    "debug": [
+        {
+            "name": "pse16l2e2_CarRentalSystem",
+            "projectName": "pse16l2e2_CarRentalSystem",
+            "workingDirectory": "c:\\Users\\mikegent\\Desktop\\GroupProjects311",
+            "args": [],
+            "vmargs": [],
+            "preLaunchTask": ""
+        },
+        {
+            "name": "pse16l5h1_mvc",
+            "projectName": "pse16l5h1_mvc",
+            "workingDirectory": "c:\\Users\\mikegent\\Desktop\\GroupProjects311",
+            "args": [],
+            "vmargs": [],
+            "preLaunchTask": ""
+        },
+        {
+            "name": "pse16l4e1_StrategyPattern",
+            "projectName": "pse16l4e1_StrategyPattern",
+            "workingDirectory": "c:\\Users\\mikegent\\Desktop\\GroupProjects311",
+            "args": [],
+            "vmargs": [],
+            "preLaunchTask": ""
+        }
+    ]
+}

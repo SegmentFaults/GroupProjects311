@@ -1,0 +1,123 @@
+[
+  {
+    "class": "Car",
+    "constructors": [
+      {
+        "modifiers": [
+          "public"
+        ],
+        "parameters": [ ]  
+      }
+    ],
+     "fields": {
+      "capacity": "int",
+      "plateNumber": "int"
+    },
+     
+    "methods": {
+      "getDailyCost": {
+        "parameters": [ ],
+        "returnType": "int"
+      }
+    }
+  }
+  ,
+  
+  {
+    "class": "FamilyCar",
+    "superclass": "Car",
+    "fields": {
+      "childSeat": "boolean"
+    },
+    "methods": {
+      "getDailyCost": {
+        "parameters": [ ],
+        "returnType": "int"
+      },
+      "hasChildSeat": {
+        "parameters": [ ],
+        "returnType": "boolean"
+      },
+      "setChildSeat": {
+        "parameters": [boolean],
+        "returnType": "void"
+      }
+    }
+  },
+
+  {
+    "class": "SportCar",
+    "superclass": "Car",
+     "fields": {
+      "superCharger": "boolean"
+    },
+    "methods": {
+      "getDailyCost": {
+        "parameters": [ ],
+        "returnType": "int"
+      },
+      "hasSuperCharger": {
+        "parameters": [ ],
+        "returnType": "boolean"
+      },
+      "setSuperCharger": {
+        "parameters": [boolean],
+        "returnType": "void"
+      }
+    }
+  },
+  
+  {
+    "class": "SUVCar",
+    "superclass": "Car" ,
+     "fields": {
+      "terrainMode": "boolean"
+    },
+    "methods": {
+      "getDailyCost": {
+        "parameters": [ ],
+        "returnType": "int"
+      },
+      "hasTerrainMode": {
+        "parameters": [ ],
+        "returnType": "boolean"
+      },
+      "setTerrainMode": {
+        "parameters": [boolean],
+        "returnType": "void"
+      }
+    }
+  },
+  
+  {
+    "class": "Rental",
+    "methods": {
+      "computeExpense": {
+        "parameters": [],
+        "returnType": "double"
+      }
+    }
+  },
+  
+  {
+    "class": "Person",
+    "constructors": [
+      {
+        "modifiers": [
+          "public"
+        ],
+        "parameters": [String]  
+      }
+    ],
+    "fields": {
+      "name": "String",
+      "drivingLicenceNumber": "String",
+      "dateOfBirth": "Date"
+    },
+
+  }
+  
+  
+]
+
+  
